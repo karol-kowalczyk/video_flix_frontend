@@ -2,4 +2,16 @@
 * {
     margin: 0;
     height: 100%;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+$red-color: #df0808;
+
+.red-bg {
+    background-color: $red-color !important;
+}
+
+.red-color {
+    color: $red-color !important;
 }
