@@ -1,10 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-* {
-    margin: 0;
-    height: 100%;
-    overflow-x: hidden;
-    scrollbar-width: none;
-}
+@import '../public/assets/fonts/roboto/robot-font.scss';
+
+// * {
+//     margin: 0;
+//     height: 100%;
+//     overflow-x: hidden;
+//     scrollbar-width: none;
+//     font-family: 'Roboto';
+// }
 
 $red-color: #df0808;
 
@@ -14,4 +17,22 @@ $red-color: #df0808;
 
 .red-color {
     color: $red-color !important;
+}
+
+// Global Styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

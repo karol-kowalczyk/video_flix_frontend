@@ -1,34 +1,154 @@
+// SCSS
 @import '../../styles.scss';
+@import '../../../public/assets/fonts/roboto/robot-font.scss';
+
+// Variables
+$red-color: #df0808;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
 
 section {
-    max-height: 100%;
+    min-height: 100vh;
     width: 100%;
     background-image: url('../../../public/assets/img/bg.jpeg');
     background-repeat: no-repeat;
-    background-size: cover; /* Bild deckt den gesamten Bereich ab */
-    background-position: center; /* Bild wird zentriert */
-    background-attachment: fixed; /* Bild bleibt beim Scrollen fixiert */
-    overflow-y: hidden;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    div {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
-        h3 {
-            padding-top: 128px;
-            font-size: 96px;
-            height: 40%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    padding: 2rem;
+    position: relative;
+    box-sizing: border-box;
+
+    .logo {
+        width: 320px;
+        height: 320px;
+        position: absolute;
+        top: 0.2rem;
+        left: 2rem;
+        transition: transform 0.8s ease;
+
+        @media (max-width: $breakpoint-tablet) {
+            left: 0;
+            top: 16px;
         }
-        p {
-            padding-bottom: 128px;
-            padding-right: 64px;
-            font-size: 24px;
+        
+        @media (max-width: $breakpoint-mobile) {
+            left: 0;
+            top: -80px;
+        }
+        
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    .content-container {
+        max-width: 1200px;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 2rem;
+
+        .headline-box {
+            margin-bottom: 3rem;
+            
+            h3 {
+                font-size: 4rem;
+                margin-bottom: 2rem;
+                text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                line-height: 1.2;
+                
+                @media (max-width: $breakpoint-tablet) {
+                    font-size: 3rem;
+                }
+                
+                @media (max-width: $breakpoint-mobile) {
+                    font-size: 2.5rem;
+                }
+            }
+        }
+
+        .button-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .intro-text {
+            font-size: 1.25rem;
+            max-width: 600px;
+            line-height: 1.6;
+            margin: 2rem auto 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            
+            @media (max-width: $breakpoint-mobile) {
+                font-size: 1rem;
+            }
         }
     }
 }
+
+// Button Styles
+.cta-button {
+    padding: 1rem 2.5rem;
+    background-color: $red-color;
+    border: 2px solid transparent;
+    border-radius: 40px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.125rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: darken($red-color, 12%);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shine 1.5s infinite;
+        }
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    span {
+        position: relative;
+        z-index: 2;
+        transition: color 0.3s ease;
+    }
+
+    @keyframes shine {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+}
+
