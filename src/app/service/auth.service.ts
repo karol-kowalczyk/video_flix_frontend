@@ -28,7 +28,6 @@ export class AuthService {
       tap((response: any) => {
         if (response?.token) {
           this.saveToken(response.token);
-          this.router.navigate(['/']);
         }
       }),
       catchError(this.handleError)
