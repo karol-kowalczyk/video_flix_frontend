@@ -2,6 +2,16 @@
   <img routerLink="/" src="assets/img/logo-red.png" alt="Logo" class="logo">
   
   <form (ngSubmit)="onSubmit()">
+    <!-- Success Message -->
+    <div *ngIf="loginSuccess" class="success-message">
+      Login erfolgreich! Weiterleitung...
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
     <h2>Login</h2>
 
     <div class="input-group">
@@ -35,7 +45,10 @@
       <a href="#">Forgot password?</a>
     </div>
 
-    <button type="submit">Login</button>
+    <button type="submit" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Login</span>
+      <span *ngIf="isLoading">Wird verarbeitet...</span>
+    </button>
 
     <div class="signup-link">
       New to Videoflix? <a routerLink="/register">Sign up now</a>
