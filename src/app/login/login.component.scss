@@ -3,17 +3,15 @@
 @import '../shared/scss/register-login-main.scss';
 
 // Farben & Breakpoints
-$primary-color: #ff3c3c; // Hauptfarbe auf Rot geändert
+$primary-color: #ff3c3c;
 $text-color: #000;
 $background-color: #fff;
 $border-radius: 20px;
-$breakpoint-tablet: 768px;
-$breakpoint-mobile: 480px;
 
 section {
     min-height: 100vh;
     width: 100%;
-    background-image: url('../../../public/assets/img/register-bg.jpg');
+    background-image: url('../../../public/assets/img/login-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -41,7 +39,7 @@ section {
         }
 
         .input-group {
-            position: relative; // Damit die Positionierung des Icons auch für normale Input-Felder möglich ist
+            position: relative;
             margin-bottom: 1rem;
 
             input {
@@ -55,7 +53,7 @@ section {
         }
 
         .password-group {
-            position: relative; // Wichtig für die Positionierung des Icons
+            position: relative;
 
             .toggle-password {
                 position: absolute;
@@ -63,23 +61,19 @@ section {
                 top: 50%;
                 transform: translateY(-50%);
                 cursor: pointer;
-                height: 20px; // Etwas größer für bessere Sichtbarkeit
+                height: 20px;
                 width: 20px;
             }
         }
 
-        .policy {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            font-size: 0.9rem;
-            margin: 1rem 0;
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 1rem;
 
             a {
                 color: $primary-color;
                 text-decoration: none;
-                font-weight: bold;
+                font-size: 0.9rem;
 
                 &:hover {
                     text-decoration: underline;
@@ -102,34 +96,20 @@ section {
                 background: darken($primary-color, 10%);
             }
         }
-    }
 
-    // Füge diese Regeln hinzu
-.success-message {
-    background: #4CAF50;
-    color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    margin: 1rem 0;
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  .error-message {
-    background: #ff3c3c;
-    color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    margin: 1rem 0;
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
+        .signup-link {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+
+            a {
+                color: $primary-color;
+                font-weight: bold;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
 }
