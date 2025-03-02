@@ -1,0 +1,38 @@
+<section>
+    <img routerLink="/" src="assets/img/logo-red.png" alt="Logo" class="logo">
+    
+    <form>
+        <h2>Sign up</h2>
+
+        <div class="input-group">
+            <input type="email" placeholder="Email address" required>
+        </div>
+
+        <div class="input-group password-group">
+            <input id="password" type="password" placeholder="Enter a password" required>
+            <img 
+                class="toggle-password" 
+                [src]="showPassword ? 'assets/img/donot-show-pw.png' : 'assets/img/show-pw.png'"
+                (click)="togglePasswordVisibility('password')"
+                alt="Toggle Password Visibility"
+            >
+        </div>
+
+        <div class="input-group password-group">
+            <input id="confirm-password" type="password" placeholder="Confirm password" required>
+            <img 
+                class="toggle-password" 
+                [src]="showConfirmPassword ? 'assets/img/donot-show-pw.png' : 'assets/img/show-pw.png'"
+                (click)="togglePasswordVisibility('confirm-password')"
+                alt="Toggle Password Visibility"
+            >
+        </div>
+
+        <div class="policy">
+            <input type="checkbox" id="policy" required>
+            <label for="policy">Please confirm the <a href="#">privacy policy.</a></label>
+        </div>
+
+        <button type="submit">Sign up</button>
+    </form>
+</section>

@@ -1,0 +1,106 @@
+@import '../../styles.scss';
+@import '../../../public/assets/fonts/roboto/robot-font.scss';
+@import '../shared/scss/register-login-main.scss';
+
+// Farben & Breakpoints
+$primary-color: #ff3c3c; // Hauptfarbe auf Rot geändert
+$text-color: #000;
+$background-color: #fff;
+$border-radius: 20px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
+
+section {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url('../../../public/assets/img/register-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
+
+    form {
+        background: $background-color;
+        padding: 2rem;
+        border-radius: $border-radius;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+
+        h2 {
+            font-size: 2rem;
+            color: $primary-color;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            position: relative; // Damit die Positionierung des Icons auch für normale Input-Felder möglich ist
+            margin-bottom: 1rem;
+
+            input {
+                width: 100%;
+                padding: 10px;
+                border: 2px solid $primary-color;
+                border-radius: 10px;
+                font-size: 1rem;
+                outline: none;
+            }
+        }
+
+        .password-group {
+            position: relative; // Wichtig für die Positionierung des Icons
+
+            .toggle-password {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                height: 20px; // Etwas größer für bessere Sichtbarkeit
+                width: 20px;
+            }
+        }
+
+        .policy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+
+            a {
+                color: $primary-color;
+                text-decoration: none;
+                font-weight: bold;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        button {
+            background: $primary-color;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+
+            &:hover {
+                background: darken($primary-color, 10%);
+            }
+        }
+    }
+}

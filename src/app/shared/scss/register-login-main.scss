@@ -1,0 +1,45 @@
+@import '../../../styles.scss';
+
+// Variables
+$red-color: black;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
+
+section {
+    min-height: 100vh;
+    width: 100%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    box-sizing: border-box;
+
+    .logo {
+        width: 320px;
+        height: 320px;
+        position: absolute;
+        top: 0.2rem;
+        left: 2rem;
+        transition: transform 0.8s ease;
+
+        @media (max-width: $breakpoint-tablet) {
+            left: 0;
+            top: 16px;
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            left: 0;
+            top: -80px;
+        }
+        
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+}
