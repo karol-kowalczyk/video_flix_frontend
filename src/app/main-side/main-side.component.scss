@@ -62,6 +62,23 @@ section {
             }
         }
     }
+    app-footer.footer-dark {
+        color: #000000 !important;
+        font-weight: 800;
+        ::ng-deep {
+          // Falls Child-Komponenten vorhanden sind
+          .footer-content {
+            color: inherit;
+          }
+          
+          a {
+            color: #000000 !important;
+            &:hover {
+              color: darken(#000000, 20%) !important;
+            }
+          }
+        }
+      }
 }
 
 // Button Styles
@@ -118,5 +135,7 @@ section {
         0% { left: -100%; }
         100% { left: 100%; }
     }
+
+
 }
 
