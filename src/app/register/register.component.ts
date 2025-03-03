@@ -4,13 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // <-- Hier importieren
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { FooterComponent } from '../shared/footer/footer.component';
+
 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [RouterLink, FormsModule, CommonModule]
+  imports: [RouterLink, FormsModule, CommonModule, FooterComponent]
 })
 export class RegisterComponent {
   showPassword = false;
