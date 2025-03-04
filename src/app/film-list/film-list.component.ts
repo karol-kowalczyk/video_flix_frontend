@@ -15,8 +15,8 @@ export class FilmListComponent {
     private router: Router
   ) { }
 
-  logout() {
-    this.authService.logout();
+  logout(): void {
+    localStorage.clear(); // Löscht den gesamten Local Storage
     this.router.navigate(['/login']);
   }
 }

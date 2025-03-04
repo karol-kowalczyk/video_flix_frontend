@@ -44,15 +44,14 @@ export class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
-  // Logout-Methode
-  logout(): void {
-    localStorage.removeItem(this.tokenKey);
-    this.router.navigate(['/login']);
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('videoflix_token');
+    return !!token; // Gibt true zurück wenn Token existiert
   }
 
-  // Prüft ob ein Token vorhanden ist
-  isAuthenticated(): boolean {
-    return !!this.getToken();
+  logout(): void {
+    localStorage.removeItem('videoflix_token');
+    this.router.navigate(['/login']);
   }
 
   // Error-Handling

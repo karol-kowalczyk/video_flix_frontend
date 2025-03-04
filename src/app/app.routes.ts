@@ -5,17 +5,18 @@ import { LoginComponent } from './login/login.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { FilmListComponent } from './film-list/film-list.component';
-
-
-
-
+import { AuthGuard } from './service/auth.guard';
 
 export const routes: Routes = [
-    { path:'', redirectTo: 'main', pathMatch: 'full' },
-    { path:'main', component: MainSideComponent},
-    { path:'register', component: RegisterComponent},
-    { path:'login', component: LoginComponent},
-    { path:'imprint', component: ImprintComponent},
-    { path:'privacy-policy', component: PrivacyPolicyComponent},
-    { path:'film-list', component: FilmListComponent},
-];
+    { path: '', redirectTo: 'main', pathMatch: 'full' },
+    { path: 'main', component: MainSideComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'imprint', component: ImprintComponent },
+    { path: 'privacy-policy', component: PrivacyPolicyComponent },
+    { 
+      path: 'film-list', 
+      component: FilmListComponent,
+      canActivate: [AuthGuard]
+    },
+]
