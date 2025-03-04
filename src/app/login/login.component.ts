@@ -35,9 +35,8 @@ export class LoginComponent {
         this.loginSuccess = true;
         this.isLoading = false;
         
-        // Weiterleitung nach 2 Sekunden
         setTimeout(() => {
-          this.router.navigate(['/content']);
+          this.router.navigate(['/film-list']);
         }, 2000);
       },
       error: (error) => {

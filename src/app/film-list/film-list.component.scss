@@ -1,0 +1,115 @@
+@import '../../styles.scss';
+@import '../../../public/assets/fonts/roboto/robot-font.scss';
+@import '../shared/scss/register-login-main.scss';
+
+* {
+    background-color: black;
+}
+
+// In deiner register-login-main.scss
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  
+    .logo {
+      width: 160px;
+      height: auto;
+      position: relative;
+      top: 0;
+      left: 0;
+      transition: transform 0.3s ease;
+  
+      &:hover {
+        transform: rotate(-5deg) scale(1.05);
+      }
+    }
+  
+    .logout-button {
+      background: $red-color;
+      color: white;
+      border-color: white;
+      border: 1px solid;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba($red-color, 0.3);
+      position: relative;
+      overflow: hidden;
+  
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255,255,255,0.3),
+          transparent
+        );
+        transition: all 0.5s;
+      }
+  
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($red-color, 0.5);
+  
+        &::before {
+          left: 100%;
+        }
+      }
+  
+      &:active {
+        transform: translateY(0);
+      }
+  
+      .logout-icon {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s ease;
+      }
+    }
+  
+    @media (max-width: $breakpoint-tablet) {
+      padding: 1rem;
+      
+      .logo {
+        width: 120px;
+      }
+  
+      .logout-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        
+        .logout-icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  
+    @media (max-width: $breakpoint-mobile) {
+      .logout-button {
+        span {
+          display: none;
+        }
+        padding: 12px;
+        border-radius: 50%;
+      }
+    }
+  }
