@@ -1,17 +1,19 @@
 <section class="landing-page">
     <!-- Header mit Logo und Log In Button -->
     <header class="header">
-      <img src="assets/img/logo-red.png" alt="Videoflix Logo" class="logo">
-      <button class="login-button" routerLink="/login">Log in</button>
+      <img src="assets/img/logo.png" alt="Videoflix Logo" class="logo">
+      <button routerlink="/login" class="login-button" routerLink="/login">Log in</button>
     </header>
   
     <!-- Hauptinhalt: Überschrift, Unterüberschrift, E-Mail-Eingabe und Sign Up Button -->
     <div class="main-content">
       <h1 class="headline">Movies, TV shows, and more.</h1>
       <p class="subheadline">Enter your email to create or restart your subscription.</p>
-      <form (ngSubmit)="onSubmit()">
-        <input type="email" [(ngModel)]="email" name="email" placeholder="Email address" required>
-        <button type="submit">Weiter zur Registrierung</button>
+      <form class="email-form" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <input type="email" [(ngModel)]="email" name="email" placeholder="Email address" required>
+          <button type="submit" class="signup-button">Sign Up</button>
+        </div>
       </form>
     </div>
   

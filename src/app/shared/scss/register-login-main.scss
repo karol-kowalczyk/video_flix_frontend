@@ -21,11 +21,11 @@ section {
     box-sizing: border-box;
 
     .logo {
-        width: 320px;
-        height: 320px;
-        position: absolute;
-        top: 0.2rem;
-        left: 2rem;
+        // width: 320px;
+        // height: 320px;
+        // position: absolute;
+        // top: 0.2rem;
+        // left: 2rem;
         transition: transform 0.8s ease;
 
         @media (max-width: $breakpoint-tablet) {

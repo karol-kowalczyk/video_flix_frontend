@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
