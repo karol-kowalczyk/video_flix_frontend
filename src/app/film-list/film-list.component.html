@@ -1,6 +1,6 @@
-<section>
+<section class="video-section">
   <div class="nav-container">
-    <img routerLink="/" src="assets/img/logo-red.png" alt="Logo" class="logo">
+    <img routerLink="/" src="assets/img/logo-red.png" alt="Videoflix Logo" class="logo">
     <button class="logout-button" (click)="logout()">
       <span>Logout</span>
       <svg class="logout-icon" viewBox="0 0 24 24">
@@ -9,10 +9,18 @@
     </button>
   </div>
 
-  <div *ngFor="let video of videos">
-    <h3>{{ video.title }}</h3>
-    <video controls>
-      <source [src]="video.video_file" type="video/mp4">
-    </video>
+  <div *ngIf="loading" class="spinner"></div>
+  <div *ngIf="!loading" class="video-grid">
+    <div *ngFor="let video of videos" class="video-card">
+      <video controls>
+        <source [src]="video.video_file" type="video/mp4">
+        Dein Browser unterstützt das Video-Tag nicht.
+      </video>
+      <div class="video-info">
+        <h3>{{ video.title }}</h3>
+        <p>{{ video.description }}</p>
+        <p>Erstellt am: {{ video.created_at }}</p>
+      </div>
+    </div>
   </div>
 </section>

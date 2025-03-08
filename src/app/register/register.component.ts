@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; // OnInit hinzufügen
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; // <-- Hier importieren
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router'; // ActivatedRoute hinzufügen
 import { AuthService } from '../service/auth.service';
 import { FooterComponent } from '../shared/footer/footer.component';
-
-
 
 @Component({
   selector: 'app-register',
@@ -14,7 +12,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
   styleUrls: ['./register.component.scss'],
   imports: [RouterLink, FormsModule, CommonModule, FooterComponent]
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit { // OnInit implementieren
   showPassword = false;
   showConfirmPassword = false;
   user = { email: '', password: '', confirm_password: '' };
@@ -23,9 +21,20 @@ export class RegisterComponent {
   isLoading = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute // ActivatedRoute für Query-Parameter
+  ) {}
 
-  // togglePasswordVisibility bleibt gleich
+  ngOnInit() {
+    // E-Mail aus Query-Parametern abrufen und vorausfüllen
+    this.route.queryParams.subscribe(params => {
+      if (params['email']) {
+        this.user.email = params['email'];
+      }
+    });
+  }
 
   onSubmit() {
     if (this.user.password !== this.user.confirm_password) {

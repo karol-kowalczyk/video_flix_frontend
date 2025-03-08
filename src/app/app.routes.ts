@@ -6,9 +6,12 @@ import { ImprintComponent } from './imprint/imprint.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { FilmListComponent } from './film-list/film-list.component';
 import { AuthGuard } from './service/auth.guard';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'main', pathMatch: 'full' },
+    { path: '', redirectTo: 'landing', pathMatch: 'full' },
+    { path: 'landing', component: LandingPageComponent},
     { path: 'main', component: MainSideComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },

@@ -1,0 +1,200 @@
+@import '../../styles.scss';
+@import '../../../public/assets/fonts/roboto/robot-font.scss';
+@import '../shared/scss/register-login-main.scss';
+
+// Farben & Breakpoints
+$primary-color: #3B82F6; // Blau aus dem Bild
+$text-color: #fff;
+$background-gradient: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,1));
+$border-radius: 8px;
+
+// Section Styling
+.landing-page {
+  min-height: 100vh;
+  width: 100%;
+  background-image: $background-gradient, url('../../../public/assets/img/login-bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+// Header
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .logo {
+    width: 160px; // Passe die Größe an dein Logo an
+  }
+
+  .login-button {
+    background-color: $primary-color;
+    color: $text-color;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: $border-radius;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+// Hauptinhalt
+.main-content {
+  text-align: center;
+  color: $text-color;
+  max-width: 600px;
+  margin: auto;
+
+  .headline {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .subheadline {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .email-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      background-color: $text-color;
+      border-radius: $border-radius;
+      padding: 0.5rem;
+      max-width: 400px;
+
+      input {
+        flex: 1;
+        padding: 0.75rem;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        background-color: transparent;
+        color: #333;
+      }
+
+      .signup-button {
+        background-color: $primary-color;
+        color: $text-color;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: $border-radius;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+
+        .arrow {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+// Footer
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 0 1rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: $breakpoint-tablet) {
+  .main-content {
+    .headline {
+      font-size: 2.5rem;
+    }
+
+    .subheadline {
+      font-size: 1.2rem;
+    }
+
+    .email-form .input-group {
+      flex-direction: column;
+      align-items: stretch;
+
+      input {
+        margin-bottom: 1rem;
+      }
+
+      .signup-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .header {
+    padding: 1rem;
+
+    .logo {
+      width: 120px;
+    }
+
+    .login-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  .main-content {
+    .headline {
+      font-size: 2rem;
+    }
+
+    .subheadline {
+      font-size: 1rem;
+    }
+  }
+
+  .footer a {
+    font-size: 0.8rem;
+    margin: 0 0.5rem;
+  }
+}

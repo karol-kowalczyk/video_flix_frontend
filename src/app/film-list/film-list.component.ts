@@ -12,7 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./film-list.component.scss']
 })
 export class FilmListComponent implements OnInit {
-  videos: any[] = [];  // Besser: Video[] = []; wenn du die Schnittstelle nutzt
+  videos: any[] = [];
+  loading = true;
 
   constructor(
     private authService: AuthService,
@@ -28,10 +29,11 @@ export class FilmListComponent implements OnInit {
     this.videoService.getVideos().subscribe(
       (data) => {
         this.videos = data;
-        console.log('Geladene Videos:', data);  // Zum Debuggen
+        this.loading = false; /* Spinner ausblenden */
       },
       (error) => {
         console.error('Fehler beim Laden der Videos:', error);
+        this.loading = false; /* Auch bei Fehlern Spinner ausblenden */
       }
     );
   }
