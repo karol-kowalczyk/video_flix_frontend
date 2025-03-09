@@ -1,17 +1,15 @@
 <section>
-    <!-- Header -->
+  
     <header class="header">
       <img src="assets/img/logo.png" alt="Videoflix Logo" class="logo">
     </header>
   
-    <!-- Email Address Formular -->
     <form (ngSubmit)="onSubmit()">
-      <!-- Success Message -->
+
       <div *ngIf="successMessage" class="success-message">
         {{ successMessage }}
       </div>
   
-      <!-- Error Message -->
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
@@ -19,7 +17,6 @@
       <h2>Forgot your password?</h2>
       <p class="subtitle">We will send you an email with instructions to reset your password.</p>
   
-      <!-- E-Mail-Eingabe -->
       <div class="input-group">
         <input 
           type="email" 
@@ -30,14 +27,12 @@
         >
       </div>
   
-      <!-- Submit Button -->
       <button type="submit" [disabled]="isLoading || !email">
         <span *ngIf="!isLoading">Send email</span>
         <span *ngIf="isLoading">Sending...</span>
       </button>
     </form>
   
-    <!-- Footer -->
     <footer class="footer">
       <a routerLink="/imprint">Datenschutz</a>
       <a routerLink="/privacy-policy">Impressum</a>

@@ -1,6 +1,6 @@
 <section class="video-section">
   <div class="nav-container">
-    <img routerLink="/" src="assets/img/logo-red.png" alt="Videoflix Logo" class="logo">
+    <img class="logo" routerLink="/" src="assets/img/new-mini-logo.png" alt="Videoflix Logo">
     <button class="logout-button" (click)="logout()">
       <span>Logout</span>
       <svg class="logout-icon" viewBox="0 0 24 24">
@@ -11,7 +11,7 @@
 
   <div *ngIf="loading" class="spinner"></div>
   <div *ngIf="!loading" class="video-grid">
-    <div *ngFor="let video of videos" class="video-card">
+    <div *ngFor="let video of videos" class="video-card" (click)="openModal(video)">
       <video controls>
         <source [src]="video.video_file" type="video/mp4">
         Dein Browser unterstützt das Video-Tag nicht.
@@ -19,7 +19,21 @@
       <div class="video-info">
         <h3>{{ video.title }}</h3>
         <p>{{ video.description }}</p>
-        <p>Erstellt am: {{ video.created_at }}</p>
+        <p>Created: {{ video.created_at }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="isModalOpen" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <video controls autoplay>
+        <source [src]="selectedVideo?.video_file" type="video/mp4">
+        Dein Browser unterstützt das Video-Tag nicht.
+      </video>
+      <div class="modal-video-info">
+        <h3>{{ selectedVideo?.title }}</h3>
+        <p>{{ selectedVideo?.description }}</p>
       </div>
     </div>
   </div>

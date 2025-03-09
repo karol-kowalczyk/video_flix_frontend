@@ -1,70 +1,49 @@
 <section>
-  <!-- Header -->
+
   <header class="header">
     <img src="assets/img/logo.png" alt="Videoflix Logo" class="logo">
   </header>
 
-  <!-- Login-Formular -->
+
   <form (ngSubmit)="onSubmit()">
-    <!-- Success Message -->
+
     <div *ngIf="loginSuccess" class="success-message">
       Log in erfolgreich! Weiterleitung...
     </div>
 
-    <!-- Error Message -->
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
 
     <h2>Log in</h2>
 
-    <!-- E-Mail-Eingabe -->
+
     <div class="input-group">
-      <input 
-        type="email" 
-        [(ngModel)]="credentials.email"
-        name="email"
-        placeholder="Email address" 
-        required
-      >
+      <input type="email" [(ngModel)]="credentials.email" name="email" placeholder="Email address" required>
     </div>
 
-    <!-- Passwort-Eingabe -->
+
     <div class="input-group password-group">
-      <input 
-        id="password" 
-        [type]="showPassword ? 'text' : 'password'" 
-        [(ngModel)]="credentials.password"
-        name="password"
-        placeholder="Enter your password" 
-        required
-      >
-      <img 
-        class="toggle-password" 
-        [src]="showPassword ? 'assets/img/donot-show-pw.png' : 'assets/img/show-pw.png'"
-        (click)="togglePasswordVisibility()"
-        alt="Toggle Password Visibility"
-      >
+      <input id="password" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="credentials.password"
+        name="password" placeholder="Enter your password" required>
+      <img class="toggle-password" [src]="showPassword ? 'assets/img/donot-show-pw.png' : 'assets/img/show-pw.png'"
+        (click)="togglePasswordVisibility()" alt="Toggle Password Visibility">
     </div>
 
-    <!-- Passwort vergessen -->
     <div class="forgot-password">
       <a routerLink="/forgot-password">Forgot password?</a>
     </div>
 
-    <!-- Login-Button -->
     <button type="submit" [disabled]="isLoading">
       <span *ngIf="!isLoading">Login</span>
       <span *ngIf="isLoading">Wird verarbeitet...</span>
     </button>
 
-    <!-- Registrierungs-Link -->
     <div class="signup-link">
       New to Videoflix? <a routerLink="/register">Sign up now</a>
     </div>
   </form>
 
-  <!-- Footer -->
   <footer class="footer">
     <a routerLink="/imprint">Datenschutz</a>
     <a routerLink="/privacy-policy">Impressum</a>

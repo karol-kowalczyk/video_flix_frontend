@@ -9,8 +9,14 @@ import { Router } from '@angular/router';
 })
 export class PrivacyPolicyComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
+  /**
+   * Navigates the user to the login page.
+   * This function uses the Angular router to redirect the user to the '/login' route.
+   * 
+   * @returns {void} - This function does not return anything.
+   */
   navigateToLogin() {
     this.router.navigate(['/login']);
   }

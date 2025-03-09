@@ -1,36 +1,29 @@
 <section class="landing-page">
-    <!-- Header mit Logo und Log In Button -->
-    <header class="header">
-        <img src="assets/img/logo.png" alt="Videoflix Logo" class="logo">
-        <button class="login-button" routerLink="/login">Log in</button>
-    </header>
-    <div class="main-content">
-        <h1 class="headline">Movies, TV shows, and more.</h1>
-        <p class="subheadline">Enter your email to create or restart your subscription.</p>
-        
-        <!-- Fehlermeldung oberhalb des Formulars -->
-        <div *ngIf="errorMessage" class="error-message">
-          {{ errorMessage }}
-        </div>
-      
-        <form class="email-form" (ngSubmit)="onSubmit()">
-          <div class="input-group">
-            <input 
-              type="email" 
-              [(ngModel)]="email"
-              name="email"
-              placeholder="Email Address" 
-              required
-            >
-            <button type="submit" class="signup-button">
-              Sign up
-            </button>
-          </div>
-        </form>
+
+  <header class="header">
+    <img src="assets/img/logo.png" alt="Videoflix Logo" class="logo">
+    <button class="login-button" routerLink="/login">Log in</button>
+  </header>
+  <div class="main-content">
+    <h1 class="headline">Movies, TV shows, and more.</h1>
+    <p class="subheadline">Enter your email to create or restart your subscription.</p>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <form class="email-form" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Email Address" required>
+        <button type="submit" class="signup-button">
+          Sign up
+        </button>
       </div>
-    <!-- Footer mit Links -->
-    <footer class="footer">
-        <a routerLink="/imprint">Datenschutz</a>
-        <a routerLink="/privacy-policy">Impressum</a>
-    </footer>
+    </form>
+  </div>
+
+  <footer class="footer">
+    <a routerLink="/imprint">Datenschutz</a>
+    <a routerLink="/privacy-policy">Impressum</a>
+  </footer>
 </section>

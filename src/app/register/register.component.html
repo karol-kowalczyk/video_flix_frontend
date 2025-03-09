@@ -1,13 +1,12 @@
 <section>
-  <img routerLink="/" src="assets/img/logo-red.png" alt="Logo" class="logo">
+  <img routerLink="/" src="assets/img/logo.png" alt="Logo" class="logo">
 
   <form (ngSubmit)="onSubmit()">
-    <!-- Success Message -->
+
     <div *ngIf="registrationSuccess" class="success-message">
       Registrierung erfolgreich!
     </div>
 
-    <!-- Error Message -->
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
