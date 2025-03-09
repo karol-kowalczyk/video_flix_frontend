@@ -3,14 +3,12 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
-import { FooterComponent } from '../shared/footer/footer.component';
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [RouterLink, FormsModule, CommonModule, FooterComponent]
+  imports: [RouterLink, FormsModule, CommonModule]
 })
 export class LoginComponent {
   showPassword = false;

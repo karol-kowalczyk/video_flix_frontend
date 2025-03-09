@@ -1,0 +1,147 @@
+@import '../../../styles.scss';
+@import '../../../../public/assets/fonts/roboto/robot-font.scss';
+@import '../../shared/scss/register-login-main.scss';
+
+// Farben & Breakpoints
+$primary-color: #2E3EDF;
+$text-color: #000;
+$background-color: #fff;
+$border-radius: 20px;
+
+// Erfolgs- und Fehlermeldungen
+.success-message {
+  background: #4CAF50;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.error-message {
+  background: #ff3c3c;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 80px;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .logo {
+    width: 160px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('../../../../public/assets/img/login-bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  position: relative;
+
+  form {
+    background: $background-color;
+    padding: 2rem;
+    border-radius: $border-radius;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+
+    h2 {
+      font-size: 2rem;
+      color: $primary-color;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: $text-color;
+      margin-bottom: 2rem;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 1rem;
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid $primary-color;
+        border-radius: 10px;
+        font-size: 1rem;
+        outline: none;
+      }
+    }
+
+    button {
+      background: $primary-color;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: darken($primary-color, 10%);
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        background: lighten($primary-color, 20%); // Hellerer Hintergrund für deaktivierten Button
+      }
+    }
+  }
+
+  // Footer-Stil
+  .footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 64px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 2rem;
+    box-sizing: border-box;
+
+    a {
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+        opacity: 0.8;
+      }
+    }
+  }
+}

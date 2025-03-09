@@ -22,6 +22,12 @@ export class AuthService {
     );
   }
 
+  checkEmail(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}check-email/`, { email }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   // Login-Methode mit automatischem Token-Handling
   login(credentials: { email: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}login/`, credentials).pipe(
@@ -33,6 +39,13 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
+
+  // // Passwort zurücksetzen
+  // resetPassword(email: string, newPassword: string): Observable<any> {
+  //   return this.http.post(`${this.apiUrl}reset-password/`, { email, new_password: newPassword }).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
 
   // Token im LocalStorage speichern
   saveToken(token: string): void {
@@ -46,7 +59,7 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('videoflix_token');
-    return !!token; // Gibt true zurück wenn Token existiert
+    return !!token;
   }
 
   logout(): void {
@@ -57,7 +70,7 @@ export class AuthService {
   // Error-Handling
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'Ein unbekannter Fehler ist aufgetreten';
-    
+
     if (error.error instanceof ErrorEvent) {
       // Client-seitiger Fehler
       errorMessage = `Fehler: ${error.error.message}`;
@@ -66,14 +79,16 @@ export class AuthService {
       if (error.status === 0) {
         errorMessage = 'Keine Verbindung zum Server';
       } else if (error.status === 400) {
-        errorMessage = 'Ungültige Anmeldedaten';
+        errorMessage = error.error.message || 'Ungültige Anfrage';
       } else if (error.status === 401) {
         errorMessage = 'Nicht autorisiert';
+      } else if (error.status === 404) {
+        errorMessage = 'E-Mail-Adresse nicht gefunden';
       } else {
         errorMessage = `Fehler-Code: ${error.status}\nNachricht: ${error.message}`;
       }
     }
-    
+
     console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
   }

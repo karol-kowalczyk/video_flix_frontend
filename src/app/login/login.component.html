@@ -1,10 +1,14 @@
 <section>
-  <img routerLink="/" src="assets/img/logo-red.png" alt="Logo" class="logo">
-  
+  <!-- Header -->
+  <header class="header">
+    <img src="assets/img/logo.png" alt="Videoflix Logo" class="logo">
+  </header>
+
+  <!-- Login-Formular -->
   <form (ngSubmit)="onSubmit()">
     <!-- Success Message -->
     <div *ngIf="loginSuccess" class="success-message">
-      Login erfolgreich! Weiterleitung...
+      Log in erfolgreich! Weiterleitung...
     </div>
 
     <!-- Error Message -->
@@ -12,8 +16,9 @@
       {{ errorMessage }}
     </div>
 
-    <h2>Login</h2>
+    <h2>Log in</h2>
 
+    <!-- E-Mail-Eingabe -->
     <div class="input-group">
       <input 
         type="email" 
@@ -24,6 +29,7 @@
       >
     </div>
 
+    <!-- Passwort-Eingabe -->
     <div class="input-group password-group">
       <input 
         id="password" 
@@ -41,19 +47,26 @@
       >
     </div>
 
+    <!-- Passwort vergessen -->
     <div class="forgot-password">
-      <a href="#">Forgot password?</a>
+      <a routerLink="/forgot-password">Forgot password?</a>
     </div>
 
+    <!-- Login-Button -->
     <button type="submit" [disabled]="isLoading">
       <span *ngIf="!isLoading">Login</span>
       <span *ngIf="isLoading">Wird verarbeitet...</span>
     </button>
 
+    <!-- Registrierungs-Link -->
     <div class="signup-link">
       New to Videoflix? <a routerLink="/register">Sign up now</a>
     </div>
   </form>
 
-  <app-footer></app-footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <a routerLink="/imprint">Datenschutz</a>
+    <a routerLink="/privacy-policy">Impressum</a>
+  </footer>
 </section>
