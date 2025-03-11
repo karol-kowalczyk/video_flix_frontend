@@ -2,134 +2,258 @@
 @import '../../../public/assets/fonts/roboto/robot-font.scss';
 @import '../shared/scss/register-login-main.scss';
 
-// Farben & Breakpoints
-$primary-color: #2E3EDF; // Hauptfarbe auf Rot geändert
+// Design Variablen
+$primary-color: #2E3EDF;
+$success-color: #4CAF50;
+$error-color: #ff3c3c;
 $text-color: #000;
 $background-color: #fff;
 $border-radius: 20px;
 $breakpoint-tablet: 768px;
 $breakpoint-mobile: 480px;
 
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 section {
-    min-height: 100vh;
-    width: 100%;
-    background-image: url('../../../public/assets/img/login-bg.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('../../../public/assets/img/login-bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  form {
+    background: $background-color;
     padding: 2rem;
-    box-sizing: border-box;
+    border-radius: $border-radius;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    position: relative;
 
-    form {
-        background: $background-color;
-        padding: 8px;
-        border-radius: $border-radius;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 400px;
-        text-align: center;
-
-        h2 {
-            font-size: 2rem;
-            color: $primary-color;
-            margin-bottom: 1rem;
-        }
-
-        .input-group {
-            position: relative; // Damit die Positionierung des Icons auch für normale Input-Felder möglich ist
-            margin-bottom: 1rem;
-
-            input {
-                width: 100%;
-                padding: 10px;
-                border: 2px solid $primary-color;
-                border-radius: 10px;
-                font-size: 1rem;
-                outline: none;
-            }
-        }
-
-        .password-group {
-            position: relative; // Wichtig für die Positionierung des Icons
-
-            .toggle-password {
-                position: absolute;
-                right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                cursor: pointer;
-                height: 20px; // Etwas größer für bessere Sichtbarkeit
-                width: 20px;
-            }
-        }
-
-        .policy {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            font-size: 0.9rem;
-            margin: 1rem 0;
-
-            a {
-                color: $primary-color;
-                text-decoration: none;
-                font-weight: bold;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-        }
-
-        button {
-            background: $primary-color;
-            color: white;
-            border: none;
-            padding: 10px;
-            width: 100%;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-
-            &:hover {
-                background: darken($primary-color, 10%);
-            }
-        }
+    h2 {
+      font-size: 2rem;
+      color: $primary-color;
+      margin-bottom: 1.5rem;
+      text-align: center;
     }
 
-    // Füge diese Regeln hinzu
-.success-message {
-    background: #4CAF50;
-    color: white;
+    .custom-alert {
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      animation: fadeIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      font-weight: 500;
+
+      svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+
+      &.success {
+        background: rgba($success-color, 0.1);
+        border: 2px solid $success-color;
+        color: darken($success-color, 15%);
+
+        svg {
+          fill: $success-color;
+        }
+      }
+
+      &.error {
+        background: rgba($error-color, 0.1);
+        border: 2px solid $error-color;
+        color: darken($error-color, 15%);
+
+        svg {
+          fill: $error-color;
+        }
+      }
+    }
+
+    .input-group {
+      margin-bottom: 1.2rem;
+      position: relative;
+
+      input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid lighten($primary-color, 30%);
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          border-color: $primary-color;
+          outline: none;
+        }
+      }
+    }
+
+    .password-group {
+      .toggle-password {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        height: 24px;
+        width: 24px;
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .policy {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+
+      a {
+        color: $primary-color;
+        font-weight: 500;
+        text-decoration: none;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background: $primary-color;
+          transition: width 0.3s ease;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+    }
+
+    button {
+      background: $primary-color;
+      color: white;
+      border: none;
+      padding: 14px;
+      width: 100%;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+
+      &:hover {
+        background: darken($primary-color, 8%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba($primary-color, 0.25);
+      }
+
+      &:disabled {
+        background: desaturate($primary-color, 40%);
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .loading-spinner {
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        display: inline-block;
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 400px;
+
+    a {
+      color: white;
+      font-size: 0.9rem;
+      text-decoration: none;
+      padding: 0.5rem;
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: $breakpoint-tablet) {
+  section {
+    padding: 1.5rem;
+
+    form {
+      padding: 1.5rem;
+
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  section {
     padding: 1rem;
-    border-radius: 8px;
-    margin: 1rem 0;
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  .error-message {
-    background: #ff3c3c;
-    color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    margin: 1rem 0;
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+
+    form {
+      padding: 1rem;
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .custom-alert {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+      }
+    }
+
+    .footer {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
   }
 }

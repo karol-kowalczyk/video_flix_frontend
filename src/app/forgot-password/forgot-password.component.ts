@@ -114,7 +114,7 @@ export class ForgotPasswordComponent {
    * @returns {void}
    */
   private resetPassword(uid: string, token: string): void {
-    this.http.post(`http://127.0.0.1:8000/users/reset-password/${uid}/${token}/`, {
+    this.http.post(`https://videoflix-backend.karol-kowalczyk.de/users/reset-password/${uid}/${token}/`, {
       new_password: this.newPassword
     }).subscribe({
       next: () => {

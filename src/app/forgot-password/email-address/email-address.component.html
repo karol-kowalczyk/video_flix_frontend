@@ -1,40 +1,39 @@
 <section>
-  
-    <header class="header">
-      <img src="assets/img/logo.png" alt="Videoflix Logo" class="logo">
-    </header>
-  
-    <form (ngSubmit)="onSubmit()">
+  <header class="header">
+    <img src="assets/img/logo.png" alt="Videoflix Logo" class="logo">
+  </header>
 
-      <div *ngIf="successMessage" class="success-message">
-        {{ successMessage }}
-      </div>
-  
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div>
-  
-      <h2>Forgot your password?</h2>
-      <p class="subtitle">We will send you an email with instructions to reset your password.</p>
-  
-      <div class="input-group">
-        <input 
-          type="email" 
-          [(ngModel)]="email"
-          name="email"
-          placeholder="E-Mail-Adresse" 
-          required
-        >
-      </div>
-  
-      <button type="submit" [disabled]="isLoading || !email">
-        <span *ngIf="!isLoading">Send email</span>
-        <span *ngIf="isLoading">Sending...</span>
-      </button>
-    </form>
-  
-    <footer class="footer">
-      <a routerLink="/imprint">Datenschutz</a>
-      <a routerLink="/privacy-policy">Impressum</a>
-    </footer>
-  </section>
+  <form (ngSubmit)="onSubmit()">
+
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <h2>Forgot your password?</h2>
+    <p class="subtitle">We will send you an email with instructions to reset your password.</p>
+
+    <div class="input-group">
+      <input 
+        type="email" 
+        [(ngModel)]="email"
+        name="email"
+        placeholder="E-Mail-Adresse" 
+        required
+      >
+    </div>
+
+    <button type="submit" [disabled]="isLoading || !email || isEmailSent">
+      <span *ngIf="!isLoading">Send email</span>
+      <span *ngIf="isLoading">Sending...</span>
+    </button>
+  </form>
+
+  <footer class="footer">
+    <a routerLink="/imprint">Datenschutz</a>
+    <a routerLink="/privacy-policy">Impressum</a>
+  </footer>
+</section>

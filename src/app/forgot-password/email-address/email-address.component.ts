@@ -24,6 +24,9 @@ export class EmailAddressComponent {
   /** @member {boolean} isLoading - Indicates whether a request is in progress. */
   isLoading: boolean = false;
 
+  /** @member {boolean} isEmailSent - Indicates whether the email has been sent. */
+  isEmailSent: boolean = false;
+
   /**
    * @constructor
    * @param {Router} router - Angular Router service for navigation.
@@ -57,6 +60,7 @@ export class EmailAddressComponent {
     this.authService.checkEmail(this.email).subscribe({
       next: (response) => {
         this.isLoading = false;
+        this.isEmailSent = true; // Setze isEmailSent auf true, sobald die E-Mail versendet wurde
         this.successMessage = 'Email address ' + this.email + ' found.';
 
         setTimeout(() => {

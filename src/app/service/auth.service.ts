@@ -30,10 +30,42 @@ export class AuthService {
    */
   register(user: { email: string; password: string; confirm_password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}register/`, user).pipe(
-      catchError(this.handleError)
+      catchError(error => {
+        console.error('Registrierungsfehler:', error.error); // Logge die vollständige Fehlerantwort
+        return this.handleError(error);
+      })
     );
   }
-
+  
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'Ein unbekannter Fehler ist aufgetreten';
+  
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Ein Fehler ist aufgetreten: ${error.error.message}`;
+    } else {
+      console.log('Server-Fehler:', error);
+      switch (error.status) {
+        case 400:
+          errorMessage = error.error?.message || 'Fehlerhafte Anfrage';
+          break;
+        case 401:
+          errorMessage = 'Nicht autorisiert';
+          break;
+        case 404:
+          errorMessage = 'Nutzer nicht gefunden';
+          break;
+        case 500:
+          errorMessage = 'Interner Serverfehler';
+          break;
+        default:
+          errorMessage = `Unbekannter Fehler: ${error.status}`;
+          break;
+      }
+    }
+  
+    console.error(errorMessage);
+    return throwError(() => new Error(errorMessage));
+  }
   /**
    * Checks if an email is already registered.
    * @param email - The email address to check.
@@ -57,6 +89,12 @@ export class AuthService {
           this.saveToken(response.token);
         }
       }),
+      catchError(this.handleError)
+    );
+  }
+
+  activateAccount(token: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}activate-account/`, { token }).pipe(
       catchError(this.handleError)
     );
   }
@@ -93,21 +131,6 @@ export class AuthService {
     localStorage.removeItem('videoflix_token');
     this.router.navigate(['/login']);
   }
-
-/**
- * Handles HTTP errors by determining if the error is client-side or server-side.
- * @private
- * @param error - The HttpErrorResponse received from the server.
- * @returns An Observable that throws an error with a user-friendly message.
- */
-private handleError(error: HttpErrorResponse): Observable<never> {
-  const errorMessage = error.error instanceof ErrorEvent
-    ? this.getClientErrorMessage(error)
-    : this.getServerErrorMessage(error);
-
-  console.error(errorMessage);
-  return throwError(() => new Error(errorMessage));
-}
 
 /**
  * Generates an error message for client-side errors.

@@ -2,12 +2,19 @@
   <img routerLink="/" src="assets/img/logo.png" alt="Logo" class="logo">
 
   <form (ngSubmit)="onSubmit()">
-
-    <div *ngIf="registrationSuccess" class="success-message">
-      Registrierung erfolgreich!
+    <!-- Success Message -->
+    <div *ngIf="registrationSuccessMessage" class="custom-alert success">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.25 7.891l-1.421-1.409-6.105 6.218-3.078-2.937-1.396 1.436 4.5 4.319 7.5-7.627z"/>
+      </svg>
+      {{ registrationSuccessMessage }}
     </div>
 
-    <div *ngIf="errorMessage" class="error-message">
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="custom-alert error">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 6h2v8h-2v-8zm1 12.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/>
+      </svg>
       {{ errorMessage }}
     </div>
 
@@ -34,15 +41,17 @@
 
     <div class="policy">
       <input type="checkbox" id="policy" [(ngModel)]="policyAccepted" name="policy" required>
-      <label for="policy">Please confirm the <a href="#">privacy policy.</a></label>
+      <label for="policy">Please confirm the <a routerLink="/privacy-policy">privacy policy.</a></label>
     </div>
 
-    <button type="submit" [disabled]="isLoading">
+    <button type="submit" [disabled]="isLoading || !policyAccepted">
       <span *ngIf="!isLoading">Sign up</span>
-      <span *ngIf="isLoading">Wird verarbeitet...</span>
+      <span *ngIf="isLoading" class="loading-spinner"></span>
     </button>
   </form>
 
-  <app-footer></app-footer>
+  <footer class="footer">
+    <a routerLink="/imprint">Datenschutz</a>
+    <a routerLink="/privacy-policy">Impressum</a>
+  </footer>
 </section>
-

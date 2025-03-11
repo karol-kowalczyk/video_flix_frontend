@@ -9,6 +9,7 @@ import { AuthGuard } from './service/auth.guard';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { EmailAddressComponent } from './forgot-password/email-address/email-address.component';
+import { ActivateAccountComponent } from './activate-account/activate-account.component';
 
 
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'forgot-password', component: EmailAddressComponent },
   { path: 'set-new-password', component: ForgotPasswordComponent },
+  { path: 'activate-account', component: ActivateAccountComponent },
   {
     path: 'film-list',
     component: FilmListComponent,

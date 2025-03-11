@@ -1,0 +1,185 @@
+@import '../../styles.scss';
+@import '../../../public/assets/fonts/roboto/robot-font.scss';
+@import '../shared/scss/register-login-main.scss';
+
+// Design Variablen
+$success-color: #4CAF50;
+$error-color: #ff3c3c;
+$text-color: #000;
+$background-color: #fff;
+$primary-color: #2E3EDF;
+$border-radius: 20px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
+
+// Animationen
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('../../../public/assets/img/login-bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  position: relative; // Ermöglicht die Positionierung des Logos
+
+  .logo {
+    position: absolute; // Positioniert das Logo absolut innerhalb des `section`-Elements
+    top: 2rem; // Abstand vom oberen Rand
+    left: 2rem; // Abstand vom linken Rand
+    width: 160px; // Breite des Logos
+    height: auto; // Höhe automatisch anpassen
+    cursor: pointer; // Zeigt einen Pointer-Cursor an, um anzuzeigen, dass das Logo klickbar ist
+  }
+
+  .activation-container {
+    background: $background-color;
+    padding: 2rem;
+    border-radius: $border-radius;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+
+    .custom-alert {
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      text-align: left;
+      animation: fadeIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+      svg {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+
+      .message-content {
+        h3 {
+          margin: 0 0 0.5rem 0;
+          font-size: 1.2rem;
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.95rem;
+          line-height: 1.4;
+        }
+      }
+
+      &.success {
+        background: rgba($success-color, 0.1);
+        border: 2px solid $success-color;
+        color: darken($success-color, 15%);
+
+        svg {
+          fill: $success-color;
+        }
+      }
+
+      &.error {
+        background: rgba($error-color, 0.1);
+        border: 2px solid $error-color;
+        color: darken($error-color, 15%);
+
+        svg {
+          fill: $error-color;
+        }
+      }
+    }
+
+    .action-links {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      a {
+        color: $primary-color;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: darken($primary-color, 15%);
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 400px;
+
+    a {
+      cursor: pointer;
+      color: white;
+      font-size: 0.9rem;
+      text-decoration: none;
+      padding: 0.5rem;
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Responsive Anpassungen
+@media (max-width: $breakpoint-mobile) {
+  section {
+    padding: 1rem;
+
+    .logo {
+      top: 1rem; // Anpassung des Abstands für mobile Geräte
+      left: 1rem; // Anpassung des Abstands für mobile Geräte
+      width: 100px; // Kleinere Logo-Größe für mobile Geräte
+    }
+
+    .activation-container {
+      padding: 1.5rem;
+
+      .custom-alert {
+        padding: 1rem;
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .message-content {
+          h3 {
+            font-size: 1.1rem;
+          }
+
+          p {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
