@@ -12,7 +12,7 @@ interface Video {
   providedIn: 'root'
 })
 export class VideoService {
-  private apiUrl = 'http://localhost:8000/api/videos/';  // Angepasst
+  private apiUrl = 'https://videoflix-backend.karol-kowalczyk.de/api/videos/';  // Angepasst
   constructor(private http: HttpClient) {}
 
   getVideos(): Observable<Video[]> {

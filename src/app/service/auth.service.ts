@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   /** API base URL for user-related endpoints */
-  private apiUrl = 'http://127.0.0.1:8000/users/';
+  private apiUrl = 'https://videoflix-backend.karol-kowalczyk.de/users/';
   
   /** Key for storing the authentication token in localStorage */
   private tokenKey = 'videoflix_token';
