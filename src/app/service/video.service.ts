@@ -5,14 +5,14 @@ import { Observable } from 'rxjs';
 interface Video {
   id: number;
   title: string;
-  video_file: string;  // Dies sollte der relative Pfad sein, z. B. "videos/output_480p.mp4"
+  video_file: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoService {
-  private apiUrl = 'https://videoflix-backend.karol-kowalczyk.de/api/videos/';  // Angepasst
+  private apiUrl = 'http://127.0.0.1:8000/api/videos/';
   constructor(private http: HttpClient) {}
 
   getVideos(): Observable<Video[]> {
