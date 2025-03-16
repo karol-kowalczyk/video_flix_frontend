@@ -37,28 +37,32 @@ export class AuthService {
     );
   }
   
+    /**
+   * Show errors a new user.
+   * @param error - An error containing email, password, and confirm_password.
+   */
   private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage = 'Ein unbekannter Fehler ist aufgetreten';
+    let errorMessage = 'An unknown error occurred';
   
     if (error.error instanceof ErrorEvent) {
-      errorMessage = `Ein Fehler ist aufgetreten: ${error.error.message}`;
+      errorMessage = `An error occurred: ${error.error.message}`;
     } else {
-      console.log('Server-Fehler:', error);
+      console.log('Server error:', error);
       switch (error.status) {
         case 400:
-          errorMessage = error.error?.message || 'Fehlerhafte Anfrage';
+          errorMessage = error.error?.message || 'Bad request';
           break;
         case 401:
-          errorMessage = 'Nicht autorisiert';
+          errorMessage = 'Unauthorized';
           break;
         case 404:
-          errorMessage = 'Nutzer nicht gefunden';
+          errorMessage = 'User not found';
           break;
         case 500:
-          errorMessage = 'Interner Serverfehler';
+          errorMessage = 'Internal server error';
           break;
         default:
-          errorMessage = `Unbekannter Fehler: ${error.status}`;
+          errorMessage = `Unknown error: ${error.status}`;
           break;
       }
     }
@@ -66,6 +70,7 @@ export class AuthService {
     console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
   }
+  
   /**
    * Checks if an email is already registered.
    * @param email - The email address to check.

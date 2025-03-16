@@ -6,8 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 
 /**
- * RegisterComponent ist eine Angular-Komponente, die die Benutzerregistrierung handhabt.
- * Sie ermöglicht es Benutzern, ein neues Konto zu erstellen und validiert die Eingaben.
+ * RegisterComponent handles user registration.
+ * It allows users to create a new account and validates input fields.
  */
 @Component({
   selector: 'app-register',
@@ -16,35 +16,35 @@ import { AuthService } from '../service/auth.service';
   imports: [RouterLink, FormsModule, CommonModule]
 })
 export class RegisterComponent implements OnInit {
-  /** Steuert die Sichtbarkeit des Passwortfelds. */
+  /** Controls the visibility of the password field. */
   showPassword = false;
 
-  /** Steuert die Sichtbarkeit des Passwort-Bestätigungsfelds. */
+  /** Controls the visibility of the confirm password field. */
   showConfirmPassword = false;
 
-  /** Speichert die Benutzereingaben für die Registrierung (E-Mail, Passwort, Passwort bestätigen). */
+  /** Stores user input for registration (email, password, confirm password). */
   user = { email: '', password: '', confirm_password: '' };
 
-  /** Gibt an, ob der Benutzer die Datenschutzrichtlinie akzeptiert hat. */
+  /** Indicates whether the user has accepted the privacy policy. */
   policyAccepted = false;
 
-  /** Gibt an, ob die Registrierung erfolgreich war. */
+  /** Indicates whether the registration was successful. */
   registrationSuccess = false;
 
-  /** Steuert den Ladezustand während der Registrierung. */
+  /** Controls the loading state during registration. */
   isLoading = false;
 
-  /** Speichert Fehlermeldungen, die während der Registrierung auftreten. */
+  /** Stores error messages that occur during registration. */
   errorMessage = '';
 
-  /** Speichert Erfolgsmeldungen nach erfolgreicher Registrierung. */
+  /** Stores success messages after successful registration. */
   registrationSuccessMessage = '';
 
   /**
-   * Konstruktor der RegisterComponent.
-   * @param authService - Der AuthService, der die Registrierungslogik handhabt.
-   * @param router - Der Router für die Navigation nach der Registrierung.
-   * @param route - Die ActivatedRoute, um Query-Parameter auszulesen.
+   * Constructor for RegisterComponent.
+   * @param {AuthService} authService - The AuthService handling registration logic.
+   * @param {Router} router - The router for navigation after registration.
+   * @param {ActivatedRoute} route - The ActivatedRoute to read query parameters.
    */
   constructor(
     private authService: AuthService,
@@ -53,8 +53,8 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   /**
-   * Lifecycle-Hook, der beim Initialisieren der Komponente aufgerufen wird.
-   * Liest die E-Mail aus den Query-Parametern und füllt das E-Mail-Feld automatisch aus.
+   * Lifecycle hook called when the component is initialized.
+   * Reads the email from query parameters and auto-fills the email field.
    */
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -65,8 +65,8 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
-   * Handhabt das Absenden des Registrierungsformulars.
-   * Überprüft, ob die Passwörter übereinstimmen, und startet die Registrierung.
+   * Handles the submission of the registration form.
+   * Checks if passwords match and initiates registration.
    */
   onSubmit() {
     if (!this.isPasswordMatching()) {
@@ -80,20 +80,20 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
-   * Überprüft, ob das Passwort und die Passwort-Bestätigung übereinstimmen.
-   * @returns {boolean} - Gibt `true` zurück, wenn die Passwörter übereinstimmen, sonst `false`.
+   * Checks if the password and confirm password match.
+   * @returns {boolean} - Returns `true` if passwords match, otherwise `false`.
    */
   private isPasswordMatching(): boolean {
     if (this.user.password !== this.user.confirm_password) {
-      this.errorMessage = 'Passwörter stimmen nicht überein!';
+      this.errorMessage = 'Passwords do not match!';
       return false;
     }
     return true;
   }
 
   /**
-   * Ruft den AuthService auf, um den Benutzer zu registrieren.
-   * Handhabt die Antwort des Servers und zeigt entsprechende Meldungen an.
+   * Calls the AuthService to register the user.
+   * Handles server responses and displays appropriate messages.
    */
   private registerUser(): void {
     this.authService.register(this.user).subscribe({
@@ -103,52 +103,52 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
-   * Handhabt eine erfolgreiche Registrierung.
-   * Setzt das Formular zurück und zeigt eine Erfolgsmeldung an.
+   * Handles a successful registration.
+   * Resets the form and displays a success message.
    */
   private handleRegistrationSuccess(): void {
     this.registrationSuccess = true;
     this.isLoading = false;
 
-    // Setzt das Formular zurück
+    // Reset form fields
     this.user = { email: '', password: '', confirm_password: '' };
     this.policyAccepted = false;
 
-    // Zeigt die Erfolgsmeldung an
-    this.errorMessage = ''; // Löscht vorherige Fehlermeldungen
-    this.registrationSuccessMessage = 'Registrierung erfolgreich! Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu aktivieren.';
+    // Display success message
+    this.errorMessage = '';
+    this.registrationSuccessMessage = 'Registration successful! Please check your email to activate your account.';
 
-    // Versteckt die Meldungen nach 7 Sekunden
+    // Hide messages after 7 seconds
     this.hideMessagesAfterDelay();
   }
 
   /**
-   * Handhabt Fehler während der Registrierung.
-   * Zeigt eine Fehlermeldung an und protokolliert den Fehler in der Konsole.
-   * @param error - Der Fehler, der vom Server zurückgegeben wurde.
+   * Handles errors during registration.
+   * Displays an error message and logs the error to the console.
+   * @param {any} error - The error returned from the server.
    */
   private handleRegistrationError(error: any): void {
     this.isLoading = false;
-    this.errorMessage = error.message || 'Registrierung fehlgeschlagen';
-    console.error('Registrierung fehlgeschlagen', error);
+    this.errorMessage = error.message || 'Registration failed';
+    console.error('Registration failed', error);
 
-    // Versteckt die Meldungen nach 7 Sekunden
+    // Hide messages after 7 seconds
     this.hideMessagesAfterDelay();
   }
 
   /**
-   * Versteckt die Erfolgs- und Fehlermeldungen nach einer Verzögerung von 7 Sekunden.
+   * Hides success and error messages after a delay of 7 seconds.
    */
   private hideMessagesAfterDelay() {
     setTimeout(() => {
       this.registrationSuccessMessage = '';
       this.errorMessage = '';
-    }, 7000); // 7000 Millisekunden = 7 Sekunden
+    }, 7000);
   }
 
   /**
-   * Schaltet die Sichtbarkeit des Passwortfelds oder des Passwort-Bestätigungsfelds um.
-   * @param field - Das Feld, dessen Sichtbarkeit umgeschaltet werden soll ('password' oder 'confirm-password').
+   * Toggles the visibility of the password or confirm password field.
+   * @param {'password' | 'confirm-password'} field - The field to toggle visibility for.
    */
   togglePasswordVisibility(field: 'password' | 'confirm-password') {
     if (field === 'password') {
